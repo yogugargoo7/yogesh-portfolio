@@ -1,78 +1,183 @@
 export const personalInfo = {
   name: "Yogesh Garg",
   title: "Full Stack Developer",
-  roles: [
-    "Full Stack Developer",
-    ".NET Core Expert",
-    "React.js Developer",
-    "Azure Cloud Engineer",
-    "API Architect",
-  ],
-  bio: "I build production-ready web applications that solve real business problems. Currently engineering a live Real Estate CRM handling actual transactions — backed by .NET Core, React.js, and Azure.",
+  headline: "Building Production-Ready Web Applications",
+  subheadline:
+    "A Full Stack Developer passionate about turning ideas into scalable, real-world applications using .NET Core, React.js & Azure.",
+  bio: "Full Stack Developer based in Rajasthan, India. Currently building production-grade Real Estate CRM handling actual business transactions at Subh Sankalp Pvt Ltd.",
   email: "yogugarg000@gmail.com",
   phone: "+91-81075-03500",
   location: "Dholpur, Rajasthan, India",
   website: "https://yogeshgarg.dev",
   github: "https://github.com/yogugargoo7",
   linkedin: "https://linkedin.com/in/yogesh-garg-dev",
-  resumeLink: "#",
+  resume: "/resume.pdf",
   available: true,
 };
 
 export const stats = [
-  { label: "Years Experience", value: 2, suffix: "+" },
-  { label: "Projects Delivered", value: 5, suffix: "+" },
-  { label: "Students Mentored", value: 100, suffix: "+" },
-  { label: "Coding Streak", value: 100, suffix: "d+" },
+  { value: "5+", label: "Projects Delivered" },
+  { value: "3+", label: "Certifications" },
+  { value: "2+", label: "Years Experience" },
+  { value: "100+", label: "Students Mentored" },
 ];
 
-export const skills = [
+export const services = [
   {
-    category: "Backend",
     icon: "⚙️",
+    title: "Full-Stack Web Development",
+    description:
+      "Building fast, scalable, and production-ready web applications using .NET Core Web API, React.js, and modern frameworks with Swagger-documented REST APIs.",
     color: "#6366f1",
-    items: [
-      { name: "C# / .NET Core", level: 90 },
-      { name: "ASP.NET Core Web API", level: 88 },
-      { name: "Entity Framework Core", level: 85 },
-      { name: "JWT Authentication", level: 87 },
-      { name: "Swagger / OpenAPI", level: 85 },
-      { name: "REST API Design", level: 90 },
-    ],
   },
   {
-    category: "Frontend",
-    icon: "🎨",
+    icon: "🏢",
+    title: "Real Estate CRM Systems",
+    description:
+      "Architecting business-grade CRM platforms with plot management, EMI tracking, receipt generation, analytics dashboards, and role-based access control.",
     color: "#22d3ee",
-    items: [
-      { name: "React.js", level: 88 },
-      { name: "JavaScript (ES6+)", level: 87 },
-      { name: "TypeScript", level: 75 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "HTML5 / CSS3", level: 92 },
-      { name: "Vite", level: 82 },
-    ],
   },
   {
-    category: "Cloud & DevOps",
     icon: "☁️",
-    color: "#f59e0b",
-    items: [
-      { name: "Microsoft Azure", level: 80 },
-      { name: "Azure Blob Storage", level: 82 },
-      { name: "GitHub Actions CI/CD", level: 80 },
-      { name: "Azure App Service", level: 78 },
-    ],
+    title: "Azure Cloud & DevOps",
+    description:
+      "Deploying and managing applications on Azure App Service with Blob Storage, automated CI/CD pipelines via GitHub Actions, and production monitoring.",
+    color: "#a855f7",
   },
   {
-    category: "Databases",
-    icon: "🗄️",
-    color: "#10b981",
-    items: [
-      { name: "MS SQL Server", level: 85 },
-      { name: "MySQL", level: 80 },
-      { name: "Firebase Firestore", level: 72 },
-    ],
+    icon: "🔌",
+    title: "REST API Design & Architecture",
+    description:
+      "Designing clean, secure, and well-documented REST APIs with JWT authentication, role-based authorization, and OpenAPI/Swagger documentation.",
+    color: "#f59e0b",
+  },
+];
+
+export const projects = [
+  {
+    title: "Mero Vrindavan Dham",
+    subtitle: "Real Estate CRM & Marketing Platform",
+    description:
+      "Production-deployed CRM managing plot bookings, customer records, EMI schedules, receipt generation & analytics. Live business system handling real transactions.",
+    category: "CRM / Full Stack",
+    year: "2025",
+    status: "Production Live",
+    gradient: "from-indigo-600 via-purple-600 to-pink-600",
+    bgPattern: "🏡",
+    color: "#6366f1",
+    tech: [".NET Core", "React.js", "Azure", "MS SQL", "JWT", "GitHub Actions"],
+    github: "https://github.com/yogugargoo7/mero-vrindavan-dham-crm",
+    live: null,
+    highlights: ["JWT + RBAC", "Azure CI/CD", "PDF Receipts", "WhatsApp Flow"],
+  },
+  {
+    title: "Food-Yum-Yum",
+    subtitle: "Restaurant Onboarding Portal",
+    description:
+      "Full-stack restaurant onboarding portal with multi-step registration flows, payment gateway integration, and optimized database queries.",
+    category: "Web App",
+    year: "2023",
+    status: "Completed",
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
+    bgPattern: "🍔",
+    color: "#f59e0b",
+    tech: ["React.js", "Node.js", "JavaScript", "CSS3", "REST API"],
+    github: "https://github.com/yogugargoo7/codemithra-tasksheet",
+    live: null,
+    highlights: ["Payment Gateway", "Multi-step Form", "DB Optimization"],
+  },
+  {
+    title: "Art Gallery",
+    subtitle: "Digital Art Exhibition Platform",
+    description:
+      "Visually rich, responsive web application for browsing and exploring curated digital artwork with category filtering and smooth UI.",
+    category: "Frontend",
+    year: "2023",
+    status: "Completed",
+    gradient: "from-cyan-500 via-blue-500 to-indigo-600",
+    bgPattern: "🎨",
+    color: "#22d3ee",
+    tech: ["React.js", "JavaScript", "CSS3", "HTML5"],
+    github: "https://github.com/yogugargoo7/art-gallery",
+    live: null,
+    highlights: ["Search & Filter", "Responsive UI", "React.js"],
+  },
+];
+
+export const skills: Record<string, { name: string; icon: string }[]> = {
+  Frontend: [
+    { name: "React.js", icon: "⚛️" },
+    { name: "JavaScript", icon: "🟨" },
+    { name: "TypeScript", icon: "🔷" },
+    { name: "Tailwind CSS", icon: "🎨" },
+    { name: "HTML5", icon: "🟧" },
+    { name: "CSS3", icon: "🔵" },
+    { name: "Vite", icon: "⚡" },
+  ],
+  Backend: [
+    { name: "C#", icon: "💜" },
+    { name: ".NET Core", icon: "🔷" },
+    { name: "ASP.NET", icon: "🌐" },
+    { name: "Entity Framework", icon: "🗃️" },
+    { name: "JWT Auth", icon: "🔐" },
+    { name: "Swagger", icon: "📄" },
+    { name: "REST APIs", icon: "🔌" },
+    { name: "Node.js", icon: "🟩" },
+  ],
+  "Cloud & DevOps": [
+    { name: "Microsoft Azure", icon: "☁️" },
+    { name: "GitHub Actions", icon: "⚙️" },
+    { name: "MS SQL Server", icon: "🗄️" },
+    { name: "MySQL", icon: "🐬" },
+    { name: "Firebase", icon: "🔥" },
+    { name: "Git", icon: "📦" },
+    { name: "Postman", icon: "📮" },
+    { name: "Figma", icon: "🎭" },
+  ],
+};
+
+export const certifications = [
+  {
+    provider: "Ethnus",
+    color: "#6366f1",
+    certs: [{ name: "MERN Stack Developer", year: "2024" }],
+  },
+  {
+    provider: "NPTEL",
+    color: "#f59e0b",
+    certs: [{ name: "Cloud Computing", year: "2024" }],
+  },
+  {
+    provider: "Coursera",
+    color: "#22d3ee",
+    certs: [{ name: "Applied Machine Learning with Python", year: "2024" }],
+  },
+];
+
+export const achievements = [
+  {
+    icon: "🥈",
+    title: "2nd Rank",
+    desc: "Robothon Competition, Robotics Club, VIT Bhopal",
+    year: "2024",
+  },
+  {
+    icon: "♟️",
+    title: "Top 5 Finalist",
+    desc: "ADVITYA'24 Chess Tournament",
+    year: "2024",
+  },
+  {
+    icon: "👨‍🏫",
+    title: "Teaching Assistant",
+    desc: "Mentored 35+ batchmates & 100+ junior students",
+    year: "2023–24",
+  },
+  {
+    icon: "🔥",
+    title: "100+ Days Streak",
+    desc: "Consistent daily coding practice maintained",
+    year: "2024",
   },
 ];
 
@@ -84,14 +189,14 @@ export const experiences = [
     period: "Feb 2025 – Present",
     type: "Full-time",
     color: "#6366f1",
-    description: [
-      "Developing production-ready Real Estate CRM using .NET Core Web API, C#, React.js, MS SQL Server, and Azure",
-      "Designed REST APIs with Swagger/OpenAPI documentation, JWT authentication, and role-based access for Admin, Associate, and Customer roles",
-      "Built CRM modules for Plot Management, Customer Management, EMI Tracking, Receipt Generation, and Analytics Dashboard",
-      "Integrated Azure Blob Storage for document/media handling with Azure App Service deployment via GitHub Actions CI/CD",
-      "Developed marketing website with lead chatbot, enquiry forms, WhatsApp flow, and CRM REST API integrations",
+    bullets: [
+      "Developing production-ready Real Estate CRM with .NET Core Web API, C#, React.js, MS SQL Server, and Azure",
+      "REST APIs with Swagger/OpenAPI, JWT authentication, and role-based access for Admin, Associate & Customer",
+      "CRM modules: Plot Management, Customer Management, EMI Tracking, Receipt Generation, Analytics Dashboard",
+      "Azure Blob Storage + App Service deployment with GitHub Actions CI/CD pipeline",
+      "Marketing website: lead chatbot, enquiry forms, WhatsApp flow, CRM REST API integrations",
     ],
-    tech: [".NET Core", "React.js", "Azure", "MS SQL Server", "JWT", "CI/CD"],
+    tech: [".NET Core", "React.js", "Azure", "MS SQL", "JWT", "CI/CD"],
   },
   {
     title: "Full Stack Developer Intern",
@@ -100,82 +205,18 @@ export const experiences = [
     period: "Apr 2024",
     type: "Internship",
     color: "#22d3ee",
-    description: [
-      "Built responsive web applications using React.js and .NET Core Web API with clean Swagger documentation",
-      "Implemented JWT authentication, role-based authorization, Entity Framework Core, and MS SQL Server integration",
-      "Worked across C#, .NET Core, React.js, JavaScript, HTML, and CSS for end-to-end application features",
+    bullets: [
+      "Built responsive web applications using React.js and .NET Core Web API with Swagger documentation",
+      "Implemented JWT authentication, role-based authorization, Entity Framework Core, MS SQL Server",
+      "Worked across C#, .NET Core, React.js, JavaScript, HTML, CSS for end-to-end features",
     ],
-    tech: ["React.js", ".NET Core", "JWT", "EF Core", "C#", "Swagger"],
+    tech: ["React.js", ".NET Core", "JWT", "EF Core", "C#"],
   },
-];
-
-export const projects = [
-  {
-    title: "Mero Vrindavan Dham",
-    subtitle: "Real Estate CRM & Marketing Platform",
-    description:
-      "Production-deployed CRM handling real estate plot lifecycle — booking, EMI tracking, receipt generation, analytics. Not a demo — live business system with real transactions.",
-    longDescription:
-      "Architected and developed a full production CRM for a real estate company. Includes Plot Management, Customer Management, EMI Tracking, PDF Receipt Generation, Analytics Dashboard, WhatsApp integration, lead chatbot, and CI/CD deployment.",
-    tech: [".NET Core", "React.js", "Azure", "MS SQL", "JWT", "GitHub Actions", "Tailwind", "Swagger"],
-    github: "https://github.com/yogugargoo7/mero-vrindavan-dham-crm",
-    live: "#",
-    color: "#6366f1",
-    gradient: "from-indigo-500 to-purple-600",
-    year: "2025",
-    status: "Production Live",
-    highlights: ["JWT + RBAC", "Azure CI/CD", "PDF Generation", "WhatsApp Flow"],
-  },
-  {
-    title: "Food-Yum-Yum",
-    subtitle: "Restaurant Onboarding Portal",
-    description:
-      "Full-stack restaurant onboarding portal with multi-step registration, payment gateway integration, and optimized database queries.",
-    longDescription:
-      "Built a complete restaurant onboarding platform with structured registration flows, payment gateway integration, database optimization, and clean backend APIs.",
-    tech: ["React.js", "Node.js", "JavaScript", "CSS3", "HTML5", "REST API"],
-    github: "https://github.com/yogugargoo7/codemithra-tasksheet",
-    live: "#",
-    color: "#22d3ee",
-    gradient: "from-cyan-500 to-blue-600",
-    year: "2023",
-    status: "Completed",
-    highlights: ["Payment Gateway", "Multi-step Form", "DB Optimization", "Responsive UI"],
-  },
-  {
-    title: "Art Gallery",
-    subtitle: "Modern Digital Art Exhibition",
-    description:
-      "Visually rich, responsive web application for browsing and exploring curated digital artwork with smooth animations.",
-    longDescription:
-      "A frontend-focused art gallery application with category browsing, search, filtering, and a clean modern UI built with React.js.",
-    tech: ["React.js", "JavaScript", "CSS3", "HTML5"],
-    github: "https://github.com/yogugargoo7/art-gallery",
-    live: "#",
-    color: "#f59e0b",
-    gradient: "from-amber-500 to-orange-600",
-    year: "2023",
-    status: "Completed",
-    highlights: ["Responsive Design", "Search & Filter", "Smooth UX", "React.js"],
-  },
-];
-
-export const achievements = [
-  { icon: "🥈", title: "2nd Rank", desc: "Robothon Competition, Robotics Club, VIT Bhopal", year: "2024" },
-  { icon: "♟️", title: "Top 5", desc: "ADVITYA'24 Chess Tournament", year: "2024" },
-  { icon: "👨‍🏫", title: "100+ Students", desc: "Mentored as Teaching Assistant", year: "2023–24" },
-  { icon: "🔥", title: "100+ Days", desc: "Consistent Coding Streak", year: "2024" },
-];
-
-export const certifications = [
-  { name: "MERN Stack Developer", issuer: "Ethnus", color: "#6366f1" },
-  { name: "Cloud Computing", issuer: "NPTEL", color: "#22d3ee" },
-  { name: "Applied ML with Python", issuer: "Coursera", color: "#10b981" },
 ];
 
 export const education = [
   {
-    degree: "B.Tech in Computer Science & Engineering",
+    degree: "B.Tech — Computer Science & Engineering",
     school: "Vellore Institute of Technology, Bhopal",
     period: "Dec 2021 – Sept 2025",
     grade: "CGPA: 7.43",

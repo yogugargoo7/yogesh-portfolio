@@ -1,141 +1,155 @@
 "use client";
+
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { experiences } from "@/lib/data";
+import { experiences, education } from "@/lib/data";
 
-export default function Experience() {
-  const titleRef = useRef(null);
-  const titleInView = useInView(titleRef, { once: true });
+type Experience = (typeof experiences)[0];
+type Education = (typeof education)[0];
 
-  return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={titleInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <p className="section-label mb-3">Work History</p>
-          <h2 className="text-5xl font-black text-white">
-            Professional{" "}
-            <span className="text-gradient">Experience</span>
-          </h2>
-        </motion.div>
-
-        {/* Timeline */}
-        <div className="relative">
-          {/* Center line — desktop only */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px timeline-line -translate-x-px" />
-
-          <div className="flex flex-col gap-16">
-            {experiences.map((exp, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <ExperienceCard
-                  key={i}
-                  exp={exp}
-                  index={i}
-                  isLeft={isLeft}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ExperienceCard({
-  exp,
-  index,
-  isLeft,
-}: {
-  exp: (typeof experiences)[0];
-  index: number;
-  isLeft: boolean;
-}) {
+function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <div ref={ref} className={`relative lg:grid lg:grid-cols-2 gap-8 items-center`}>
-      {/* Timeline dot — desktop */}
-      <div className="hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 z-10 items-center justify-center">
-        <div
-          className="w-4 h-4 rounded-full border-2 relative"
-          style={{ borderColor: exp.color, background: "#050508" }}
-        >
-          <span
-            className="absolute inset-0 rounded-full animate-ping opacity-40"
-            style={{ background: exp.color }}
-          />
-        </div>
-      </div>
-
-      {/* Empty spacer for right cards */}
-      {!isLeft && <div className="hidden lg:block" />}
-
-      {/* Card */}
-      <motion.div
-        initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.7, delay: index * 0.05 }}
-        className={`glass gradient-border rounded-2xl p-6 border-l-2 ${isLeft ? "lg:col-start-1" : "lg:col-start-2"}`}
-        style={{ borderLeftColor: exp.color }}
-      >
-        {/* Header row */}
-        <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-          <div>
-            <h3 className="text-xl font-bold text-white">{exp.title}</h3>
-            <p className="text-gray-400 text-sm mt-0.5">
-              {exp.company} &mdash; {exp.location}
-            </p>
-          </div>
-          <div className="flex flex-col items-end gap-2">
-            <span className="glass rounded-full px-3 py-1 text-xs text-gray-300 whitespace-nowrap">
-              {exp.period}
-            </span>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: -40 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="card p-6"
+      style={{ borderLeft: `3px solid ${exp.color}` }}
+    >
+      {/* Header row */}
+      <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+        <div>
+          <h3 className="font-bold text-white text-xl">{exp.title}</h3>
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            <span className="text-gray-400 text-sm">{exp.company}</span>
             <span
               className="text-xs font-semibold px-2 py-0.5 rounded-full"
               style={{ background: `${exp.color}22`, color: exp.color }}
             >
               {exp.type}
             </span>
+            <span className="text-gray-500 text-xs">{exp.location}</span>
           </div>
         </div>
+        <span className="text-sm text-gray-500 bg-white/5 px-3 py-1 rounded-full flex-shrink-0">
+          {exp.period}
+        </span>
+      </div>
 
-        {/* Bullet points */}
-        <ul className="flex flex-col gap-2 mb-4">
-          {exp.description.map((point, j) => (
-            <li key={j} className="text-sm text-gray-400 flex gap-2 leading-relaxed">
-              <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: exp.color }} />
-              {point}
-            </li>
-          ))}
-        </ul>
-
-        {/* Tech badges */}
-        <div className="flex flex-wrap gap-2">
-          {exp.tech.map((t) => (
+      {/* Bullet points */}
+      <ul className="flex flex-col gap-2 mb-4">
+        {exp.bullets.map((point, j) => (
+          <li key={j} className="text-gray-400 text-sm leading-relaxed flex gap-2">
             <span
-              key={t}
-              className="text-xs px-2.5 py-1 rounded-full glass"
-              style={{ color: exp.color, borderColor: `${exp.color}40` }}
-            >
-              {t}
-            </span>
+              className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ background: exp.color }}
+            />
+            {point}
+          </li>
+        ))}
+      </ul>
+
+      {/* Tech badges */}
+      <div className="flex flex-wrap gap-1.5">
+        {exp.tech.map((t) => (
+          <span key={t} className="tech-badge">
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function EducationCard({ edu, index }: { edu: Education; index: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: -30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="card p-5"
+      style={{ borderLeft: `3px solid ${edu.color}` }}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="font-semibold text-white">{edu.degree}</p>
+          <p className="text-gray-400 text-sm mt-0.5">{edu.school}</p>
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <span className="text-xs text-gray-500">{edu.period}</span>
+          <span
+            className="text-xs font-semibold px-2 py-0.5 rounded-full"
+            style={{ background: `${edu.color}22`, color: edu.color }}
+          >
+            {edu.grade}
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function Experience() {
+  const expTitleRef = useRef(null);
+  const eduTitleRef = useRef(null);
+  const expInView = useInView(expTitleRef, { once: true });
+  const eduInView = useInView(eduTitleRef, { once: true });
+
+  return (
+    <section className="py-24 relative overflow-hidden">
+      <div className="absolute top-1/4 right-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Experience Section */}
+        <motion.div
+          ref={expTitleRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={expInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-10"
+        >
+          <span className="section-label">Career</span>
+          <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
+            Work Experience
+          </h2>
+          <div className="section-divider mt-4" />
+        </motion.div>
+
+        <div className="flex flex-col gap-5 mb-20">
+          {experiences.map((exp, i) => (
+            <ExperienceCard key={i} exp={exp} index={i} />
           ))}
         </div>
-      </motion.div>
 
-      {/* Empty spacer for left cards */}
-      {isLeft && <div className="hidden lg:block" />}
-    </div>
+        {/* Education Section */}
+        <motion.div
+          ref={eduTitleRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={eduInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-10"
+        >
+          <span className="section-label">Education</span>
+          <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
+            Academic Background
+          </h2>
+          <div className="section-divider mt-4" />
+        </motion.div>
+
+        <div className="flex flex-col gap-4">
+          {education.map((edu, i) => (
+            <EducationCard key={i} edu={edu} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
