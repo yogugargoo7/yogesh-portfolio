@@ -4,48 +4,70 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { services } from "@/lib/data";
 
+const categoryLabels = [
+  "Web Development",
+  "CRM Systems",
+  "Cloud & DevOps",
+  "API Design",
+];
+
 export default function Services() {
-  const titleRef = useRef(null);
-  const inView = useInView(titleRef, { once: true });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="about" className="py-28 bg-[#07070c]">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <span className="section-label">What I Do</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
-            My Services
-          </h2>
-          <div className="section-divider mx-auto mt-4" />
-        </motion.div>
+        {/* Header row */}
+        <div ref={ref} className="flex items-end justify-between mb-16">
+          <div>
+            <span className="section-label">What I Do</span>
+            <h2 className="section-heading">Services</h2>
+            <p className="text-gray-400 text-base max-w-md mt-3">
+              End-to-end solutions from architecture design to production deployment.
+            </p>
+          </div>
+          <span className="hidden lg:block text-gray-700 text-5xl font-black select-none leading-none">
+            04
+          </span>
+        </div>
 
-        {/* Cards */}
+        {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="card p-6"
+              transition={{ duration: 0.55, delay: i * 0.12, ease: "easeOut" }}
+              className="card p-8 group"
             >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
-                style={{ background: `${service.color}18` }}
-              >
-                {service.icon}
+              {/* Top row */}
+              <div className="flex justify-between items-start">
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                  style={{ background: `${service.color}15` }}
+                >
+                  {service.icon}
+                </div>
+                <span className="text-gray-700 group-hover:text-indigo-400 transition-colors duration-200 text-lg">
+                  →
+                </span>
               </div>
-              <h3 className="font-semibold text-white text-lg mt-4">{service.title}</h3>
-              <p className="text-gray-400 text-sm mt-2 leading-relaxed">{service.description}</p>
+
+              <h3 className="font-semibold text-white text-[1.1rem] mt-5 mb-2">
+                {service.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-[1.75]">{service.description}</p>
+
+              {/* Category footer */}
+              <div className="flex items-center gap-2 mt-6">
+                <span
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                  style={{ background: service.color }}
+                />
+                <span className="text-xs text-gray-600">{categoryLabels[i]}</span>
+              </div>
             </motion.div>
           ))}
         </div>

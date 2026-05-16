@@ -4,79 +4,80 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { projects, personalInfo } from "@/lib/data";
 
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{ duration: 0.55, delay: index * 0.1, ease: "easeOut" }}
       className="card overflow-hidden flex flex-col"
     >
-      {/* Image Area */}
-      <div className="h-48 relative overflow-hidden">
-        <div
-          className={`h-full bg-gradient-to-br ${project.gradient} relative flex items-center justify-center`}
-        >
-          {/* Big background emoji */}
-          <span className="text-8xl opacity-20 select-none">{project.bgPattern}</span>
-          {/* Category badge top-left */}
-          <div className="absolute top-3 left-3">
-            <span className="text-xs font-medium text-white bg-black/40 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1">
-              {project.category}
-            </span>
-          </div>
-          {/* Year badge top-right */}
-          <div className="absolute top-3 right-3">
-            <span className="text-xs text-white/70 bg-black/30 backdrop-blur-sm border border-white/10 rounded-full px-2 py-1">
-              {project.year}
-            </span>
-          </div>
-          {/* Bottom gradient overlay */}
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#111118] to-transparent" />
+      {/* Image area */}
+      <div className={`project-img bg-gradient-to-br ${project.gradient}`}>
+        <span className="big-emoji">{project.bgPattern}</span>
+        {/* Category badge */}
+        <div className="absolute top-4 left-4 z-10">
+          <span className="badge badge-purple">{project.category}</span>
+        </div>
+        {/* Year badge */}
+        <div className="absolute top-4 right-4 z-10">
+          <span className="text-xs text-white/50 bg-black/30 px-2 py-0.5 rounded-full">
+            {project.year}
+          </span>
         </div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-5 flex flex-col flex-1">
-        {/* Status badge */}
-        <span
-          className={
-            project.status === "Production Live" ? "badge-green w-fit" : "badge-blue w-fit"
-          }
-        >
-          {project.status === "Production Live" ? "🟢 " : "✅ "}
-          {project.status}
-        </span>
-        <h3 className="font-bold text-white text-lg mt-2">{project.title}</h3>
-        <p className="text-gray-400 text-sm mt-2 leading-relaxed line-clamp-3 flex-1">
+      {/* Body */}
+      <div className="p-6 flex flex-col flex-1">
+        {/* Title + Status row */}
+        <div className="flex justify-between items-center mb-3 gap-2">
+          <h3 className="font-bold text-white text-[1.05rem] leading-tight">
+            {project.title}
+          </h3>
+          <span
+            className={`badge flex-shrink-0 ${
+              project.status === "Production Live" ? "badge-green" : "badge-blue"
+            }`}
+          >
+            {project.status}
+          </span>
+        </div>
+
+        <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
           {project.description}
         </p>
 
-        {/* Tech tags */}
-        <div className="flex flex-wrap gap-1 mt-3">
+        {/* Tech pills */}
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {project.tech.map((t) => (
-            <span key={t} className="tech-badge">
+            <span key={t} className="tech-pill">
               {t}
             </span>
           ))}
         </div>
 
-        {/* GitHub button */}
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-secondary text-sm mt-4 rounded-xl justify-center"
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-          </svg>
-          View on GitHub
-        </a>
+        {/* Footer */}
+        <div className="border-t border-white/[0.05] pt-4 flex justify-between items-center">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-400 text-sm font-medium hover:text-indigo-300 transition-colors"
+          >
+            View on GitHub →
+          </a>
+          <span className="text-xs text-gray-700">{project.year}</span>
+        </div>
       </div>
     </motion.div>
   );
@@ -87,37 +88,36 @@ export default function Projects() {
   const inView = useInView(titleRef, { once: true });
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 left-1/3 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="projects" className="py-28 bg-[#07070c]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <motion.div
+        <div
           ref={titleRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-16"
         >
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55 }}
+          >
             <span className="section-label">Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
-              Latest Projects
-            </h2>
-            <div className="section-divider mt-4" />
-          </div>
-          <a
+            <h2 className="section-heading">Latest Projects</h2>
+          </motion.div>
+          <motion.a
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.1 }}
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary rounded-xl text-sm flex-shrink-0"
+            className="btn-ghost flex-shrink-0"
           >
-            View GitHub ↗
-          </a>
-        </motion.div>
+            View GitHub →
+          </motion.a>
+        </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}

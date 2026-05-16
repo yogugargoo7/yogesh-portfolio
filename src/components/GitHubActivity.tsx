@@ -8,53 +8,56 @@ export default function GitHubActivity() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-20 bg-[#0a0a12] border-y border-white/[0.04]">
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div className="grid lg:grid-cols-[1fr_380px] gap-10 items-start">
+          {/* LEFT */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <span className="section-label">Open Source</span>
+            <h2 className="section-heading">GitHub Activity</h2>
+            <p className="text-gray-500 text-sm mt-2 mb-8">
+              Consistent daily contributions across projects
+            </p>
 
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <span className="section-label">Contributions</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
-            GitHub Activity
-          </h2>
-          <div className="section-divider mx-auto mt-4" />
-        </motion.div>
+            {/* Contribution chart */}
+            <div className="card p-5 overflow-hidden">
+              <img
+                src="https://ghchart.rshah.org/6366f1/yogugargoo7"
+                alt="GitHub Contribution Chart"
+                className="w-full rounded-lg opacity-80"
+              />
+            </div>
+          </motion.div>
 
-        {/* Content card */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="card p-6 overflow-hidden"
-        >
-          {/* Contribution chart */}
-          <img
-            src="https://ghchart.rshah.org/6366f1/yogugargoo7"
-            alt="GitHub Contributions"
-            className="w-full rounded-lg opacity-90"
-          />
+          {/* RIGHT */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            {/* Stats card */}
+            <div className="card p-5 overflow-hidden">
+              <img
+                src="https://github-readme-stats.vercel.app/api?username=yogugargoo7&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f0f18&title_color=818cf8&icon_color=a78bfa&text_color=94a3b8"
+                alt="GitHub Stats"
+                className="w-full rounded-lg"
+              />
+            </div>
 
-          {/* Stats grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <img
-              src="https://github-readme-stats.vercel.app/api?username=yogugargoo7&show_icons=true&theme=tokyonight&hide_border=true&bg_color=111118&title_color=6366f1&icon_color=a855f7&text_color=94a3b8"
-              alt="GitHub Stats"
-              className="w-full rounded-lg"
-            />
-            <img
-              src="https://streak-stats.demolab.com?user=yogugargoo7&theme=tokyonight&hide_border=true&background=111118"
-              alt="GitHub Streak"
-              className="w-full rounded-lg"
-            />
-          </div>
-        </motion.div>
+            {/* Streak card */}
+            <div className="card p-5 mt-4 overflow-hidden">
+              <img
+                src="https://streak-stats.demolab.com?user=yogugargoo7&theme=tokyonight&hide_border=true&background=0f0f18"
+                alt="GitHub Streak"
+                className="w-full rounded-lg"
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
