@@ -7,7 +7,7 @@ export const personalInfo = {
   bio: "Full Stack Developer at Subh Sankalp Pvt Ltd, Noida. I build and run the company's real estate CRM, used daily across 4 townships with 970+ plots and 2,600+ receipts.",
   email: "yogugarg000@gmail.com",
   phone: "+91-81075-03500",
-  location: "Dholpur, Rajasthan, India",
+  location: "Noida, Uttar Pradesh, India",
   website: "https://yogesh-portfolio-omega-seven.vercel.app",
   github: "https://github.com/yogugargoo7",
   linkedin: "https://www.linkedin.com/in/yogesh-garg-980517232",
