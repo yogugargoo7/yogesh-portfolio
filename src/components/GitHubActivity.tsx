@@ -39,17 +39,8 @@ export default function GitHubActivity() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
-            {/* Stats card */}
-            <div className="card p-5 overflow-hidden">
-              <img
-                src="https://github-readme-stats.vercel.app/api?username=yogugargoo7&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f0f18&title_color=818cf8&icon_color=a78bfa&text_color=94a3b8"
-                alt="GitHub Stats"
-                className="w-full rounded-lg"
-              />
-            </div>
-
             {/* Streak card */}
-            <div className="card p-5 mt-4 overflow-hidden">
+            <div className="card p-5 overflow-hidden">
               <img
                 src="https://streak-stats.demolab.com?user=yogugargoo7&theme=tokyonight&hide_border=true&background=0f0f18"
                 alt="GitHub Streak"

@@ -29,7 +29,7 @@ const contactItems = [
   {
     icon: "💼",
     label: "LinkedIn",
-    value: "linkedin.com/in/yogesh-garg-dev",
+    value: "linkedin.com/in/yogesh-garg-980517232",
     href: personalInfo.linkedin,
     color: "#0ea5e9",
   },

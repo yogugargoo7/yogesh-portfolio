@@ -53,12 +53,12 @@ function ProjectCard({
           </span>
         </div>
 
-        <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
+        <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">
           {project.description}
         </p>
 
         {/* Tech pills */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
+        <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
           {project.tech.map((t) => (
             <span key={t} className="tech-pill">
               {t}
@@ -67,15 +67,32 @@ function ProjectCard({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-white/[0.05] pt-4 flex justify-between items-center">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-indigo-400 text-sm font-medium hover:text-indigo-300 transition-colors"
-          >
-            View on GitHub →
-          </a>
+        <div className="border-t border-white/[0.05] pt-4 flex justify-between items-center gap-3">
+          <div className="flex flex-wrap gap-4">
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 text-sm font-medium hover:text-indigo-300 transition-colors"
+              >
+                Live site →
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 text-sm font-medium hover:text-indigo-300 transition-colors"
+              >
+                Code →
+              </a>
+            )}
+            {!project.live && !project.github && (
+              <span className="text-xs text-gray-600">Private project</span>
+            )}
+          </div>
           <span className="text-xs text-gray-700">{project.year}</span>
         </div>
       </div>

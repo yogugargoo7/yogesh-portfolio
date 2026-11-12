@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Inside the base layer so Tailwind utilities (p-6, mx-auto, ...) can override it.
+   Unlayered, it beat every spacing utility and pinned the page to the left edge. */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+}
 html { scroll-behavior: smooth; }
 body {
   background: #07070c;
@@ -111,6 +115,8 @@ body {
   transition: all 0.2s;
 }
 .btn-ghost:hover { color: white; border-color: rgba(99,102,241,0.4); background: rgba(99,102,241,0.08); transform: translateY(-2px); }
+/* Square icon-only variant; .btn-ghost padding would otherwise squeeze the icon to nothing. */
+.btn-ghost.btn-icon { padding: 0; width: 2.5rem; height: 2.5rem; justify-content: center; }
 
 /* ── Badges ── */
 .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 600; border-radius: 100px; padding: 3px 10px; }
